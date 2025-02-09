@@ -1,2 +1,2 @@
-# esorjs.github.io
-esor js framework documentation
+# doc
+Esor framework documentation
