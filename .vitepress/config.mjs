@@ -28,14 +28,20 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: "Examples",
+        text: "Introduction",
         items: [
+          { text: "Why Esor", link: "/guide/why" },
+          { text: "Getting Started", link: "/guide/getting-started" },
+          { text: "Tutorial", link: "/guide/tutorial" },
+        ],
+      },
+      {
+        text: "Essentials",
+        items: [
+          { text: "Components", link: "/guide/components" },
           { text: "Hooks", link: "/guide/hooks" },
           { text: "Lyfecycle", link: "/guide/lifecycle" },
           { text: "Usando Stores", link: "/guide/stores" },
-
-          { text: "Markdown Examples", link: "/markdown-examples" },
-          { text: "Runtime API Examples", link: "/api-examples" },
         ],
       },
     ],

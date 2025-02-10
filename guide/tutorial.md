@@ -2,6 +2,32 @@
 
 ## Creando tu Primer Componente
 
+### component(name, setup)
+
+Crea un nuevo componente web personalizado.
+
+```javascript
+component("my-component", (props) => {
+  // setup code
+  return html`...`,
+});
+
+// Factory Class HTMLElement
+// –––––––––––––––––––––––––
+//    |
+//    v
+component("my-component", (props) => {
+//               ^             ^
+//         HTML tag name    properties
+//         –––––––––––––    ––––––––––
+//
+//  (Component definition here ... )
+//
+// return view
+  return html`...`,
+});
+```
+
 ### 1. Estructura Básica
 
 ```javascript
@@ -100,23 +126,5 @@ component("todo-list", () => {
       </ul>
     </div>
   `;
-});
-```
-
-### 5. Ciclo de Vida
-
-```javascript
-import { component, html, onMount, onDestroy } from "esor";
-
-component("lifecycle-demo", () => {
-  onMount(() => {
-    console.log("Componente montado");
-  });
-
-  onDestroy(() => {
-    console.log("Componente destruido");
-  });
-
-  return html`<div>Demo del ciclo de vida</div>`;
 });
 ```

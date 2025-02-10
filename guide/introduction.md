@@ -12,6 +12,10 @@ component("hello-world", () => {
 });
 ```
 
+::: warning
+Esor is in version: ```beta```, use it wisely, it is not yet ready for production.
+:::
+
 ## ¿Por qué Esor?
 
 ### 🚀 Rendimiento Excepcional
@@ -50,43 +54,6 @@ component("user-profile", function () {
 - Sistema de templates potente y eficiente
 - Hooks intuitivos para gestión de estado y efectos
 - Cero dependencias
-
-## Primeros Pasos
-
-### Instalación
-
-```bash
-npm install esor
-```
-
-### Tu Primer Componente
-
-```javascript
-import { component, html, useSignal } from "esor";
-
-component("counter-app", () => {
-  const [count, setCount] = useSignal(0);
-
-  return html`
-    <div>
-      <h1>Contador: ${count}</h1>
-      <button @click=${() => setCount(count + 1)}>Incrementar</button>
-    </div>
-  `;
-});
-```
-
-### Uso en HTML
-
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <counter-app></counter-app>
-    <script type="module" src="/src/counter.js"></script>
-  </body>
-</html>
-```
 
 ## Características Principales
 
@@ -137,5 +104,5 @@ Esor está diseñado para ser adoptado gradualmente. Puedes empezar con un solo 
 :::
 
 ::: warning NOTA
-Esor requiere navegadores modernos que soporten Web Components. Consulta la [tabla de compatibilidad](./guide/browser-support) para más detalles.
+Esor requiere navegadores modernos que soporten Web Components. Consulta la [tabla de compatibilidad](https://caniuse.com/?search=web%20components) para más detalles.
 :::
