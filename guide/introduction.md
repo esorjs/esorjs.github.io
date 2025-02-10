@@ -16,7 +16,7 @@ component("hello-world", () => {
 
 ### 🚀 Rendimiento Excepcional
 
-Esor utiliza Web Components nativos y un sistema de reactividad granular, lo que resulta en aplicaciones rápidas y eficientes con un bundle size mínimo.
+Esor utiliza Web Components nativos y un sistema de reactividad grano de fino, lo que resulta en aplicaciones rápidas y eficientes con un bundle size mínimo.
 
 ### 💡 Intuitivo y Familiar
 

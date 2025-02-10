@@ -31,6 +31,8 @@ export default defineConfig({
         text: "Examples",
         items: [
           { text: "Hooks", link: "/guide/hooks" },
+          { text: "Lyfecycle", link: "/guide/lifecycle" },
+          { text: "Usando Stores", link: "/guide/stores" },
 
           { text: "Markdown Examples", link: "/markdown-examples" },
           { text: "Runtime API Examples", link: "/api-examples" },
