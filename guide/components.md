@@ -21,8 +21,8 @@ component("my-component", (props) => {
 //         –––––––––––––    ––––––––––
 //
 //  (Component definition here ... )
-// 
+//
 // return view
   return html`...`,
-});   
+});
 ```

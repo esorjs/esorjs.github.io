@@ -17,6 +17,7 @@ export default defineConfig({
       link: "/es/guide",
     },
   },
+
   ignoreDeadLinks: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
