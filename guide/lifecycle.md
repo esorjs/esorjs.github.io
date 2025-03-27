@@ -1,20 +1,14 @@
 ## Hooks de Ciclo de Vida
 
-### onBeforeMount, onMount, onBeforeUpdate, onUpdate, onDestroy
+### beforeMount, onMount, beforeUpdate, onUpdate, onDestroy
 
 Hooks para manejar el ciclo de vida del componente.
 
 ```javascript
-import {
-  onBeforeMount,
-  onMount,
-  onBeforeUpdate,
-  onUpdate,
-  onDestroy,
-} from "esor";
+import { beforeMount, onMount, beforeUpdate, onUpdate, onDestroy } from "esor";
 
 // Se ejecuta antes de montar el componente
-onBeforeMount(() => {
+beforeMount(() => {
   console.log("Antes de montar");
 });
 
@@ -24,7 +18,7 @@ onMount(() => {
 });
 
 // Se ejecuta antes de actualizar
-onBeforeUpdate(() => {
+beforeUpdate(() => {
   console.log("Antes de actualizar");
 });
 

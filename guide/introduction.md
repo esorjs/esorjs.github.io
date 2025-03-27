@@ -5,7 +5,7 @@
 Esor es un framework web moderno y minimalista basado en Web Components, diseñado para crear interfaces de usuario interactivas y de alto rendimiento. Combina la potencia de los estándares web nativos con un sistema reactivo elegante, ofreciendo una experiencia de desarrollo fluida y productiva.
 
 ```javascript
-import { component, html, useSignal } from "esor";
+import { component, html, signal } from "esor";
 
 component("hello-world", () => {
   return html`<h1>¡Hola, mundo!</h1>`;
@@ -13,7 +13,7 @@ component("hello-world", () => {
 ```
 
 ::: warning
-Esor is in version: ```beta```, use it wisely, it is not yet ready for production.
+Esor is in version: `beta`, use it wisely, it is not yet ready for production.
 :::
 
 ## ¿Por qué Esor?
@@ -27,15 +27,19 @@ Esor utiliza Web Components nativos y un sistema de reactividad grano de fino, l
 Si conoces HTML, CSS y JavaScript, te sentirás como en casa. Esor adopta patrones familiares y los mejora con características modernas:
 
 ```javascript
-import { component, html, useSignal } from "esor";
+import { component, html, signal, effect } from "esor";
 
-component("user-profile", function () {
-  const [user, setUser] = useSignal({ name: "Ana" });
+component("user-profile", () => {
+  const user = signal({ name: "Ana" });
+
+  effect(() => {
+    console.log("Nombre actual:", user().name);
+  });
 
   return html`
     <div class="profile">
-      <h2>${user.name}</h2>
-      <button @click=${() => setUser({ name: "Juan" })}>Cambiar Nombre</button>
+      <h2>${() => user().name}</h2>
+      <button onclick=${() => user({ name: "Juan" })}>Cambiar Nombre</button>
     </div>
   `;
 });

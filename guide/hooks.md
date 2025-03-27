@@ -2,43 +2,43 @@
 
 ## Hooks de Estado y Reactividad
 
-### useSignal(initialValue)
+### signal(initialValue)
 
 Hook fundamental para crear estados reactivos.
 
 ```javascript
-import { useSignal } from "esor";
+import { signal } from "esor";
 
 // Uso básico
-const [count, setCount] = useSignal(0);
+const count = signal(0);
 
 // Leer valor
 console.log(count);
 
 // Establecer nuevo valor
-setCount(1);
+count(1);
 
 // Actualizar basado en valor previo
-setCount(count + 1); //correcto
+count(count + 1); //correcto
 
-setCount((prev) => prev + 1); //incorrecto
+count((prev) => prev + 1); //incorrecto
 ```
 
 ::: warning
-Para actualizar el signal se debe pasar el getter: js`setCount(count + 1)`, o directamente el valor js`setCount(1)`, esto se mostrará como un String:
-js`setCount((prev) => prev + 1); ` a diferencia de otros.
+Para actualizar el signal se debe pasar el getter: js`count(count() + 1)`, o directamente el valor js`count(1)`, esto se mostrará como un String:
+js`count((prev) => prev + 1); ` a diferencia de otros.
 
 :::
 
-### useComputed(fn)
+### computed(fn)
 
 Crea una señal computada que se actualiza automáticamente cuando sus dependencias cambian.
 
 ```javascript
-import { useSignal, useComputed } from "esor";
+import { signal, computed } from "esor";
 
-const [count, setCount] = useSignal(0);
-const doubled = useComputed(() => count * 2);
+const count = signal(0);
+const doubled = computed(() => count * 2);
 
 // o simplemente hacer:
 const doubled = () => count * 2;
@@ -48,14 +48,14 @@ const doubled = () => count * 2;
 
 ## Hooks de Efectos
 
-### useEffect(fn)
+### onEffect(fn)
 
 Ejecuta efectos secundarios que se sincronizan con los cambios de estado.
 
 ```javascript
-import { useEffect } from "esor";
+import { onEffect } from "esor";
 
-useEffect(() => {
+onEffect(() => {
   // Este código se ejecuta cuando las dependencias cambian
 
   // Opcional: retornar función de limpieza
@@ -67,54 +67,54 @@ useEffect(() => {
 
 ## Hooks de Memorización
 
-### useMemo(fn, deps)
+### memo(fn, deps)
 
 Memoriza un valor calculado y solo lo recalcula cuando las dependencias cambian.
 
 ```javascript
-import { useMemo } from "esor";
+import { memo } from "esor";
 
-const memoizedValue = useMemo(() => computeExpensiveValue(dep), [dep]);
+const memoizedValue = memo(() => computeExpensiveValue(dep), [dep]);
 ```
 
 ## Hooks de Referencias
 
-### useRef()
+### ref()
 
 Crea una referencia mutable que persiste entre renderizados.
 
 ```javascript
-import { useRef } from "esor";
+import { ref } from "esor";
 
-const ref = useRef();
+const ref = ref();
 // Acceder al valor actual
 console.log(ref.current);
 ```
 
 ## Hooks de Eventos
 
-### useEmit(name, detail)
+### emit(name, detail)
 
 Hook para emitir eventos personalizados.
 
 ```javascript
-import { useEmit } from "esor";
+import { emit } from "esor";
 
-const event = useEmit("custom-event", {
+const event = emit("custom-event", {
   data: "some data",
 });
 ```
 
 ## Hooks de Utilidad
 
-### useBatch(fn)
+### batch(fn)
 
 Agrupa múltiples actualizaciones de estado en una sola actualización.
 
 ```javascript
-import { useBatch } from "esor";
+import { batch } from "esor";
 
-useBatch(() => {
+batch(() => {
   setCount(count + 1);
   setName("John");
   // Solo provocará una actualización
