@@ -31,18 +31,24 @@ export default defineConfig({
       {
         text: "Introduction",
         items: [
-          { text: "Why Esor", link: "/guide/why" },
-          { text: "Getting Started", link: "/guide/getting-started" },
-          { text: "Tutorial", link: "/guide/tutorial" },
+          { text: "Why Esor", link: "/guide/introduction/why" },
+          {
+            text: "Getting Started",
+            link: "/guide/introduction/getting-started",
+          },
+          { text: "Tutorial", link: "/guide/introduction/tutorial" },
         ],
       },
       {
         text: "Essentials",
         items: [
-          { text: "Components", link: "/guide/components" },
-          { text: "Hooks", link: "/guide/hooks" },
-          { text: "Lyfecycle", link: "/guide/lifecycle" },
-          { text: "Usando Stores", link: "/guide/stores" },
+          { text: "Components", link: "/guide/essentials/components" },
+          { text: "Hooks", link: "/guide/essentials/hooks" },
+          { text: "Lyfecycle", link: "/guide/essentials/lifecycle" },
+          { text: "Reactivity", link: "/guide/essentials/reactivity" },
+          { text: "Templates", link: "/guide/essentials/templating" },
+          { text: "Usando Stores", link: "/guide/essentials/stores" },
+          { text: "Usando Router", link: "/guide/essentials/router" },
         ],
       },
     ],
@@ -52,13 +58,13 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+      { icon: "github", link: "https://github.com/esorjs/esor" },
       { icon: "x", link: "https://x.com/esor_js" },
     ],
 
     footer: {
       message:
-        'Released under the <a href="https://github.com/vuejs/vitepress/blob/main/LICENSE">MIT License</a>.',
+        'Released under the <a href="https://github.com/esorjs/esor/blob/main/LICENSE">MIT License</a>.',
       copyright:
         'Copyright © 2024-present <a href="https://github.com/juancristobalgd1">Juan Cristobal</a>',
     },

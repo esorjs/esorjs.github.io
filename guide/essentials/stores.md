@@ -1,13 +1,13 @@
 ## Hooks de Store
 
-### useStore(initialState, options)
+### store(initialState, options)
 
 Crea un store global con estado persistente opcional.
 
 ```javascript
-import { useStore } from "esor";
+import { store } from "esor";
 
-const [state, store] = useStore(
+const [state, store] = store(
   {
     count: 0,
   },

@@ -83,7 +83,7 @@ APIs intuitivas y herramientas de desarrollo modernas.
 | -------------------- | -------------- | -------------- | ----------- |
 | Base                 | Web Components | Web Components | Virtual DOM |
 | Reactividad          | Signals        | Properties     | Hooks       |
-| Bundle Size          | ~5KB           | ~5KB           | ~40KB       |
+| Bundle Size          | ~3KB           | ~5KB           | ~40KB       |
 | Curva de Aprendizaje | Baja           | Media          | Media       |
 | Ecosistema           | En crecimiento | Maduro         | Muy grande  |
 
