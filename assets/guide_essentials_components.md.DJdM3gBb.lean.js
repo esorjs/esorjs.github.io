@@ -17,4 +17,4 @@ import{r as n,d as k,c as t,G as p}from"./chunks/app.Bdf5eF46.js";import{_ as e,
     <style>
       ${t}
     </style>
-  `});const m=JSON.parse('{"title":"Componentes","description":"","frontmatter":{},"headers":[],"relativePath":"guide/essentials/components.md","filePath":"guide/essentials/components.md"}'),g={name:"guide/essentials/components.md"};function o(i,s,l,y,c,u){const h=r("happy-app");return d(),E("div",null,[s[0]||(s[0]=a("",20)),F(h),s[1]||(s[1]=a("",2))])}const b=e(g,[["render",o]]);export{m as __pageData,b as default};
+  `});const m=JSON.parse('{"title":"Componentes","description":"","frontmatter":{},"headers":[],"relativePath":"guide/essentials/components.md","filePath":"guide/essentials/components.md"}'),g={name:"guide/essentials/components.md"};function o(i,s,h,y,c,u){const l=r("happy-app");return d(),E("div",null,[s[0]||(s[0]=a("",20)),F(l),s[1]||(s[1]=a("",2))])}const b=e(g,[["render",o]]);export{m as __pageData,b as default};

@@ -17,4 +17,4 @@ import{r as h,d as e,c as p,G as k,w as o}from"./chunks/app.Bdf5eF46.js";import{
     <style>
       ${p}
     </style>
-  `});const b=JSON.parse('{"title":"Reactivity","description":"","frontmatter":{},"headers":[],"relativePath":"guide/essentials/reactivity.md","filePath":"guide/essentials/reactivity.md"}'),F={name:"guide/essentials/reactivity.md"};function y(s,i,a,u,m,C){const r=t("my-name"),d=t("doubled-computed");return c(),g("div",null,[i[0]||(i[0]=n("",9)),l(r),i[1]||(i[1]=n("",3)),l(d)])}const A=E(F,[["render",y]]);export{b as __pageData,A as default};
+  `});const b=JSON.parse('{"title":"Reactivity","description":"","frontmatter":{},"headers":[],"relativePath":"guide/essentials/reactivity.md","filePath":"guide/essentials/reactivity.md"}'),F={name:"guide/essentials/reactivity.md"};function y(s,i,a,u,C,m){const r=t("my-name"),d=t("doubled-computed");return c(),g("div",null,[i[0]||(i[0]=n("",9)),l(r),i[1]||(i[1]=n("",3)),l(d)])}const D=E(F,[["render",y]]);export{b as __pageData,D as default};
