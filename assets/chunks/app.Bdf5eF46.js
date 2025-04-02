@@ -48,4 +48,8 @@ button {
   padding: 10px 20px 10px 20px;
   border-radius: 5px;
   outline: none;
-}`;export{ae as G,ve as c,L as d,ge as r,ye as w};
+  &:hover {
+    color: rgb(0, 0, 0);
+  }
+}
+`;export{ae as G,ve as c,L as d,ge as r,ye as w};
