@@ -37,7 +37,7 @@ import{o as e,c as r,L as n,g as y,J as C,$ as B}from"./chunks/app.BoDcaR0x.js";
     <style>
       ${r}
     </style>
-  `});e("my-refs",function(){let i={current:null};const s=()=>{var t;return(t=i.current)==null?void 0:t.focus()};let a;const d=t=>a=t,o=()=>{a&&a.focus()};let F=B();C(()=>F().placeholder=new Date);const g=()=>F().focus();let E;return n`
+  `});e("my-refs",function(){let i={current:null};const s=()=>{var t;return(t=i.current)==null?void 0:t.focus()};let a;const g=t=>a=t,o=()=>{a&&a.focus()};let F=B();C(()=>F().placeholder=new Date);const d=()=>F().focus();let E;return n`
     <div class="container">
       <div>
         <input
@@ -49,13 +49,13 @@ import{o as e,c as r,L as n,g as y,J as C,$ as B}from"./chunks/app.BoDcaR0x.js";
 
       <div>
         <input ref=${F} />
-        <button onclick=${g}>Focus Input</button>
+        <button onclick=${d}>Focus Input</button>
         <input ref=${i} placeholder="Write something..." />
         <button onclick=${s}>Focus Input</button>
       </div>
 
       <div>
-        <input ref=${d} placeholder="Write something..." />
+        <input ref=${g} placeholder="Write something..." />
         <button onclick=${o}>Focus Input</button>
       </div>
 
@@ -64,24 +64,26 @@ import{o as e,c as r,L as n,g as y,J as C,$ as B}from"./chunks/app.BoDcaR0x.js";
       </style>
     </div>
   `});const l=["red","orange","green"];e("template-conditional",()=>{const i=y(0);return n`
-    <button onclick=${()=>i((i()+1)%l.length)}>Next light</button>
+    <div class="container">
+      Light is:
+      <p style=${()=>"color: "+l[i()]}>
+        ${()=>l[i()]}
+      </p>
 
-    Light is:
-    <p style=${()=>"color: "+l[i()]}>
-      ${()=>l[i()]}
-    </p>
+      <p>
+        You must
+        ${()=>l[i()]==="red"&&n`<span>STOP</span>`}
+        ${()=>l[i()]==="orange"&&n`<span>SLOW DOWN</span>`}
+        ${()=>l[i()]==="green"&&n`<span>GO</span>`}
+      </p>
 
-    <p>
-      You must
-      ${()=>l[i()]==="red"&&n`<span>STOP</span>`}
-      ${()=>l[i()]==="orange"&&n`<span>SLOW DOWN</span>`}
-      ${()=>l[i()]==="green"&&n`<span>GO</span>`}
-    </p>
+      <button onclick=${()=>i((i()+1)%l.length)}>Next light</button>
+    </div>
 
     <style>
       ${r}
     </style>
-  `});const f=JSON.parse('{"title":"Templating","description":"","frontmatter":{},"headers":[],"relativePath":"guide/essentials/templating.md","filePath":"guide/essentials/templating.md"}'),v={name:"guide/essentials/templating.md"};function b(i,s,a,d,o,F){const g=h("various-styles"),E=h("colors-loops"),t=h("emoji-list"),c=h("my-refs"),u=h("template-conditional");return A(),q("div",null,[s[0]||(s[0]=p(`<h1 id="templating" tabindex="-1">Templating <a class="header-anchor" href="#templating" aria-label="Permalink to &quot;Templating&quot;">​</a></h1><h2 id="method-html" tabindex="-1">Method <code>html</code> <a class="header-anchor" href="#method-html" aria-label="Permalink to &quot;Method \`html\`&quot;">​</a></h2><h4 id="minimal-template" tabindex="-1">Minimal template <a class="header-anchor" href="#minimal-template" aria-label="Permalink to &quot;Minimal template&quot;">​</a></h4><p>Import the main API and define a simple component:</p><div class="language-javascript vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">javascript</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> { component, html } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;esor&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
+  `});const f=JSON.parse('{"title":"Templating","description":"","frontmatter":{},"headers":[],"relativePath":"guide/essentials/templating.md","filePath":"guide/essentials/templating.md"}'),v={name:"guide/essentials/templating.md"};function b(i,s,a,g,o,F){const d=h("various-styles"),E=h("colors-loops"),t=h("emoji-list"),c=h("my-refs"),u=h("template-conditional");return A(),q("div",null,[s[0]||(s[0]=p(`<h1 id="templating" tabindex="-1">Templating <a class="header-anchor" href="#templating" aria-label="Permalink to &quot;Templating&quot;">​</a></h1><h2 id="method-html" tabindex="-1">Method <code>html</code> <a class="header-anchor" href="#method-html" aria-label="Permalink to &quot;Method \`html\`&quot;">​</a></h2><h4 id="minimal-template" tabindex="-1">Minimal template <a class="header-anchor" href="#minimal-template" aria-label="Permalink to &quot;Minimal template&quot;">​</a></h4><p>Import the main API and define a simple component:</p><div class="language-javascript vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">javascript</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> { component, html } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;esor&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">component</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;my-component&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">  return</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> html</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">\`&lt;h1&gt;Hello World!&lt;/h1&gt;\`</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
@@ -109,7 +111,7 @@ import{o as e,c as r,L as n,g as y,J as C,$ as B}from"./chunks/app.BoDcaR0x.js";
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">      }</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">    &lt;/style&gt;</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">  \`</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">});</span></span></code></pre></div><p>The component is shown below:</p>`,9)),k(g),s[1]||(s[1]=p(`<p>Using the <code>Vite</code> packer</p><div class="language-javascript vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">javascript</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> { component, html } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;esor&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">});</span></span></code></pre></div><p>The component is shown below:</p>`,9)),k(d),s[1]||(s[1]=p(`<p>Using the <code>Vite</code> packer</p><div class="language-javascript vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">javascript</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> { component, html } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;esor&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> css </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;./app.css?raw&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">component</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;colors-loops&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>

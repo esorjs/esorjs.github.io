@@ -37,7 +37,7 @@ import{o as e,c as r,L as n,g as y,J as C,$ as B}from"./chunks/app.BoDcaR0x.js";
     <style>
       ${r}
     </style>
-  `});e("my-refs",function(){let i={current:null};const s=()=>{var t;return(t=i.current)==null?void 0:t.focus()};let a;const d=t=>a=t,o=()=>{a&&a.focus()};let F=B();C(()=>F().placeholder=new Date);const g=()=>F().focus();let E;return n`
+  `});e("my-refs",function(){let i={current:null};const s=()=>{var t;return(t=i.current)==null?void 0:t.focus()};let a;const g=t=>a=t,o=()=>{a&&a.focus()};let F=B();C(()=>F().placeholder=new Date);const d=()=>F().focus();let E;return n`
     <div class="container">
       <div>
         <input
@@ -49,13 +49,13 @@ import{o as e,c as r,L as n,g as y,J as C,$ as B}from"./chunks/app.BoDcaR0x.js";
 
       <div>
         <input ref=${F} />
-        <button onclick=${g}>Focus Input</button>
+        <button onclick=${d}>Focus Input</button>
         <input ref=${i} placeholder="Write something..." />
         <button onclick=${s}>Focus Input</button>
       </div>
 
       <div>
-        <input ref=${d} placeholder="Write something..." />
+        <input ref=${g} placeholder="Write something..." />
         <button onclick=${o}>Focus Input</button>
       </div>
 
@@ -64,21 +64,23 @@ import{o as e,c as r,L as n,g as y,J as C,$ as B}from"./chunks/app.BoDcaR0x.js";
       </style>
     </div>
   `});const l=["red","orange","green"];e("template-conditional",()=>{const i=y(0);return n`
-    <button onclick=${()=>i((i()+1)%l.length)}>Next light</button>
+    <div class="container">
+      Light is:
+      <p style=${()=>"color: "+l[i()]}>
+        ${()=>l[i()]}
+      </p>
 
-    Light is:
-    <p style=${()=>"color: "+l[i()]}>
-      ${()=>l[i()]}
-    </p>
+      <p>
+        You must
+        ${()=>l[i()]==="red"&&n`<span>STOP</span>`}
+        ${()=>l[i()]==="orange"&&n`<span>SLOW DOWN</span>`}
+        ${()=>l[i()]==="green"&&n`<span>GO</span>`}
+      </p>
 
-    <p>
-      You must
-      ${()=>l[i()]==="red"&&n`<span>STOP</span>`}
-      ${()=>l[i()]==="orange"&&n`<span>SLOW DOWN</span>`}
-      ${()=>l[i()]==="green"&&n`<span>GO</span>`}
-    </p>
+      <button onclick=${()=>i((i()+1)%l.length)}>Next light</button>
+    </div>
 
     <style>
       ${r}
     </style>
-  `});const f=JSON.parse('{"title":"Templating","description":"","frontmatter":{},"headers":[],"relativePath":"guide/essentials/templating.md","filePath":"guide/essentials/templating.md"}'),v={name:"guide/essentials/templating.md"};function b(i,s,a,d,o,F){const g=h("various-styles"),E=h("colors-loops"),t=h("emoji-list"),c=h("my-refs"),u=h("template-conditional");return A(),q("div",null,[s[0]||(s[0]=p("",9)),k(g),s[1]||(s[1]=p("",6)),k(E),s[2]||(s[2]=p("",4)),k(t),s[3]||(s[3]=p("",12)),k(c),s[4]||(s[4]=p("",4)),k(u)])}const I=m(v,[["render",b]]);export{f as __pageData,I as default};
+  `});const f=JSON.parse('{"title":"Templating","description":"","frontmatter":{},"headers":[],"relativePath":"guide/essentials/templating.md","filePath":"guide/essentials/templating.md"}'),v={name:"guide/essentials/templating.md"};function b(i,s,a,g,o,F){const d=h("various-styles"),E=h("colors-loops"),t=h("emoji-list"),c=h("my-refs"),u=h("template-conditional");return A(),q("div",null,[s[0]||(s[0]=p("",9)),k(d),s[1]||(s[1]=p("",6)),k(E),s[2]||(s[2]=p("",4)),k(t),s[3]||(s[3]=p("",12)),k(c),s[4]||(s[4]=p("",4)),k(u)])}const I=m(v,[["render",b]]);export{f as __pageData,I as default};
