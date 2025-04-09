@@ -1,4 +1,4 @@
-import{o as n,g as k,c as t,L as p}from"./chunks/app.ClaAdPT1.js";import{_ as e,C as r,c as E,o as d,ag as a,G as F}from"./chunks/framework.DPDPlp3K.js";n("happy-app",()=>{const i=k(!0);return p`
+import{o as n,g as k,c as t,L as p}from"./chunks/app.BoDcaR0x.js";import{_ as e,C as r,c as E,o as d,ag as a,G as F}from"./chunks/framework.DPDPlp3K.js";n("happy-app",()=>{const i=k(!0);return p`
     <div class="container" style="margin:16px 0">
       <h2>Are you happy?</h2>
       <p style="font-size: 50px">${()=>i()?"😀":"😥"}</p>
