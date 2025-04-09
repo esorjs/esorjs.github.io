@@ -48,7 +48,7 @@ import{o as e,c as r,L as n,g as y,J as C,$ as B}from"./chunks/app.BoDcaR0x.js";
       </div>
 
       <div>
-        <input ref=${F} />
+        <input ref=${F} placeholder="Write something..." />
         <button onclick=${d}>Focus Input</button>
         <input ref=${i} placeholder="Write something..." />
         <button onclick=${s}>Focus Input</button>
@@ -66,9 +66,9 @@ import{o as e,c as r,L as n,g as y,J as C,$ as B}from"./chunks/app.BoDcaR0x.js";
   `});const l=["red","orange","green"];e("template-conditional",()=>{const i=y(0);return n`
     <div class="container">
       Light is:
-      <p style=${()=>"color: "+l[i()]}>
+      <h3 style=${()=>"color: "+l[i()]}>
         ${()=>l[i()]}
-      </p>
+      </h3>
 
       <p>
         You must
