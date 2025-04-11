@@ -1,4 +1,4 @@
-import{o as s,g as n,c as o,L as r}from"./chunks/app.BoDcaR0x.js";import{_ as l,C as h,c as p,o as d,ag as i,G as c}from"./chunks/framework.DPDPlp3K.js";s("my-counter",()=>{const e=n(0);return r`
+import{s,b as n,c as o,U as r}from"./chunks/app.B63VH7Bb.js";import{_ as l,C as h,c as p,o as d,ag as i,G as c}from"./chunks/framework.DPDPlp3K.js";s("my-counter",()=>{const e=n(0);return r`
     <div class="container">
       <h1>Count: ${e}</h1>
       <button onclick=${()=>e(e()+1)}>+</button>
