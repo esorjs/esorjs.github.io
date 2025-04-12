@@ -1,6 +1,6 @@
-import{n,y as l,c as h,L as p}from"./chunks/app.CKdIyf5Y.js";import{_ as k,C as e,c as E,o as r,ag as a,G as d}from"./chunks/framework.DPDPlp3K.js";n("hello-world",()=>{const i=l("Mundo");return p`
+import{n,y as l,c as h,L as p}from"./chunks/app.CKdIyf5Y.js";import{_ as k,C as e,c as E,o as r,ag as a,G as d}from"./chunks/framework.DPDPlp3K.js";n("hello-world",()=>{const i=l("World");return p`
     <div class="container">
-      <h1>Hola ${i}!</h1>
+      <h1>Hello ${i}!</h1>
       <input value=${i} oninput=${s=>i(s.target.value)} />
     </div>
 
