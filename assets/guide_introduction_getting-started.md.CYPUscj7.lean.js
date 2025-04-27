@@ -1,4 +1,4 @@
-import{e as n,y as l,c as h,G as p}from"./chunks/app.BJJNMLGc.js";import{_ as k,C as e,c as E,o as r,ag as a,G as d}from"./chunks/framework.DPDPlp3K.js";n("hello-world",()=>{const i=l("World");return p`
+import{Q as n,m as l,c as h,j as p}from"./chunks/app.Cb1koKI4.js";import{_ as k,C as e,c as E,o as r,ag as a,G as d}from"./chunks/framework.DPDPlp3K.js";n("hello-world",()=>{const i=l("World");return p`
     <div class="container">
       <h1>Hello ${i}!</h1>
       <input value=${i} oninput=${s=>i(s.target.value)} />
