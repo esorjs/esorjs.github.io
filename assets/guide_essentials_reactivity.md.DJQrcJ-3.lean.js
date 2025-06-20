@@ -1,4 +1,4 @@
-import{Z as h,A as e,c as p,j as k,D as o}from"./chunks/app.B-PDXqBi.js";import{_ as E,C as t,c as g,o as c,ag as n,G as l}from"./chunks/framework.Bw-5EFTY.js";h("my-name",()=>{const s=e("Juan Cristobal");return s("Xiomara"),k`
+import{Z as h,A as e,c as p,j as k,D as o}from"./chunks/app.Dbi3JLp4.js";import{_ as E,C as t,c as g,o as c,ag as n,G as l}from"./chunks/framework.Bw-5EFTY.js";h("my-name",()=>{const s=e("Juan Cristobal");return s("Xiomara"),k`
     <div class="container">
       <h3>Hello ${s}!</h3>
     </div>

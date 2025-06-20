@@ -1,4 +1,4 @@
-import{Z as e,c as r,j as n,A as y,G as C,e as B}from"./chunks/app.B-PDXqBi.js";import{_ as m,C as h,c as q,o as A,ag as p,G as k}from"./chunks/framework.Bw-5EFTY.js";e("various-styles",()=>n`
+import{Z as e,c as r,j as n,A as y,G as C,e as B}from"./chunks/app.Dbi3JLp4.js";import{_ as m,C as h,c as q,o as A,ag as p,G as k}from"./chunks/framework.Bw-5EFTY.js";e("various-styles",()=>n`
     <div class="container">
       <h1 class="title">I am text</h1>
       <button style=${{fontSize:"3rem",color:"brown",margin:"18px"}}>
