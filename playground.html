@@ -33,18 +33,17 @@
         justify-content: space-between;
         align-items: center;
       }
-      textarea {
+      #code-editor {
         flex: 1;
         width: 100%;
-        resize: none;
-        border: none;
-        padding: 1rem;
-        font-family: monospace;
-        background-color: var(--vp-c-bg);
-        color: var(--vp-c-text-1);
-        outline: none;
+        overflow: auto;
+      }
+      .cm-editor {
+        height: 100%;
         font-size: 14px;
-        line-height: 1.5;
+      }
+      .cm-scroller {
+        overflow: auto;
       }
       iframe {
         flex: 1;
@@ -131,7 +130,7 @@
           <span>Code</span>
           <button class="run-button" id="run-btn">Run</button>
         </div>
-        <textarea id="code-editor" spellcheck="false"></textarea>
+        <div id="code-editor"></div>
       </div>
       <div class="preview-pane">
         <div class="pane-header">
@@ -141,7 +140,12 @@
       </div>
     </div>
 
-    <script>
+    <script type="module">
+      import { EditorView, basicSetup } from "https://esm.sh/@codemirror/basic-setup@0.20.0";
+      import { javascript } from "https://esm.sh/@codemirror/lang-javascript@6.2.1";
+      import { oneDark } from "https://esm.sh/@codemirror/theme-one-dark@6.1.2";
+      import { keymap } from "https://esm.sh/@codemirror/view@6.23.0";
+
       const defaultCode = `import { component, html, signal } from "https://unpkg.com/esor/dist/esor.min.js";
 
 component("hello-world", () => {
@@ -164,15 +168,34 @@ component("hello-world", () => {
 document.body.innerHTML = '<hello-world></hello-world>';
 `;
 
-      const editor = document.getElementById('code-editor');
       const preview = document.getElementById('preview-frame');
       const runBtn = document.getElementById('run-btn');
 
-      // Load initial code
-      editor.value = localStorage.getItem('esor-playground-code') || defaultCode;
+      // Check if dark mode is active
+      const isDark = document.documentElement.classList.contains('dark');
+
+      // Create CodeMirror editor
+      const editor = new EditorView({
+        doc: localStorage.getItem('esor-playground-code') || defaultCode,
+        extensions: [
+          basicSetup,
+          javascript(),
+          isDark ? oneDark : [],
+          keymap.of([
+            {
+              key: "Mod-Enter",
+              run: () => {
+                updatePreview();
+                return true;
+              }
+            }
+          ])
+        ],
+        parent: document.getElementById('code-editor')
+      });
 
       function updatePreview() {
-        const code = editor.value;
+        const code = editor.state.doc.toString();
         localStorage.setItem('esor-playground-code', code);
 
         const htmlContent = `
@@ -199,29 +222,6 @@ document.body.innerHTML = '<hello-world></hello-world>';
 
       // Initial run
       updatePreview();
-
-      // Handle Tab in textarea
-      editor.addEventListener('keydown', function(e) {
-        if (e.key == 'Tab') {
-          e.preventDefault();
-          var start = this.selectionStart;
-          var end = this.selectionEnd;
-
-          // set textarea value to: text before caret + tab + text after caret
-          this.value = this.value.substring(0, start) +
-            "  " + this.value.substring(end);
-
-          // put caret at right position again
-          this.selectionStart = this.selectionEnd = start + 2;
-        }
-      });
-
-      // Auto-run on Ctrl+Enter or Cmd+Enter
-      editor.addEventListener('keydown', function(e) {
-          if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-              updatePreview();
-          }
-      });
     </script>
 
     <!-- Include dark mode script from index.html to prevent flash of wrong theme if possible,
