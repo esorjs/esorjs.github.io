@@ -33,17 +33,17 @@
         justify-content: space-between;
         align-items: center;
       }
-      #code-editor {
+      .editor-content {
         flex: 1;
+        position: relative;
+        min-height: 0;
+      }
+      #code-editor {
         width: 100%;
-        overflow: auto;
-      }
-      .cm-editor {
         height: 100%;
-        font-size: 14px;
-      }
-      .cm-scroller {
-        overflow: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
       iframe {
         flex: 1;
@@ -130,7 +130,9 @@
           <span>Code</span>
           <button class="run-button" id="run-btn">Run</button>
         </div>
-        <div id="code-editor"></div>
+        <div class="editor-content">
+          <div id="code-editor"></div>
+        </div>
       </div>
       <div class="preview-pane">
         <div class="pane-header">
@@ -140,15 +142,10 @@
       </div>
     </div>
 
-    <script type="module">
-      import { EditorView, keymap, lineNumbers, highlightActiveLine, highlightActiveLineGutter } from "https://esm.sh/@codemirror/view@6.23.0";
-      import { EditorState } from "https://esm.sh/@codemirror/state@6.3.3";
-      import { javascript } from "https://esm.sh/@codemirror/lang-javascript@6.2.1";
-      import { oneDark } from "https://esm.sh/@codemirror/theme-one-dark@6.1.2";
-      import { defaultKeymap, history, historyKeymap } from "https://esm.sh/@codemirror/commands@6.3.3";
-      import { syntaxHighlighting, defaultHighlightStyle, bracketMatching } from "https://esm.sh/@codemirror/language@6.10.0";
-      import { closeBrackets, closeBracketsKeymap } from "https://esm.sh/@codemirror/autocomplete@6.11.1";
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/mode-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/theme-monokai.min.js"></script>
+    <script>
       const defaultCode = `import { component, html, signal } from "https://unpkg.com/esor/dist/esor.min.js";
 
 component("hello-world", () => {
@@ -174,43 +171,22 @@ document.body.innerHTML = '<hello-world></hello-world>';
       const preview = document.getElementById('preview-frame');
       const runBtn = document.getElementById('run-btn');
 
-      // Check if dark mode is active
-      const isDark = document.documentElement.classList.contains('dark');
-
-      // Create CodeMirror editor with manual basic setup
-      const editor = new EditorView({
-        state: EditorState.create({
-          doc: localStorage.getItem('esor-playground-code') || defaultCode,
-          extensions: [
-            lineNumbers(),
-            highlightActiveLineGutter(),
-            highlightActiveLine(),
-            history(),
-            bracketMatching(),
-            closeBrackets(),
-            javascript(),
-            syntaxHighlighting(defaultHighlightStyle),
-            isDark ? oneDark : [],
-            keymap.of([
-              ...closeBracketsKeymap,
-              ...defaultKeymap,
-              ...historyKeymap,
-              {
-                key: "Mod-Enter",
-                run: () => {
-                  updatePreview();
-                  return true;
-                }
-              }
-            ]),
-            EditorView.lineWrapping
-          ]
-        }),
-        parent: document.getElementById('code-editor')
+      // Initialize Ace Editor
+      const editor = ace.edit("code-editor");
+      editor.setTheme("ace/theme/monokai");
+      editor.session.setMode("ace/mode/javascript");
+      editor.setOptions({
+        fontSize: "14px",
+        showPrintMargin: false,
+        enableBasicAutocompletion: true,
+        enableLiveAutocompletion: true
       });
 
+      // Load saved code or default
+      editor.setValue(localStorage.getItem('esor-playground-code') || defaultCode, -1);
+
       function updatePreview() {
-        const code = editor.state.doc.toString();
+        const code = editor.getValue();
         localStorage.setItem('esor-playground-code', code);
 
         const htmlContent = `
@@ -234,6 +210,13 @@ document.body.innerHTML = '<hello-world></hello-world>';
       }
 
       runBtn.addEventListener('click', updatePreview);
+
+      // Auto-run on Ctrl+Enter or Cmd+Enter
+      editor.commands.addCommand({
+        name: 'runCode',
+        bindKey: { win: 'Ctrl-Enter', mac: 'Command-Enter' },
+        exec: updatePreview
+      });
 
       // Initial run
       updatePreview();
