@@ -215,9 +215,9 @@ document.body.innerHTML = '<counter-app></counter-app>';`,
         'todo-list': `import { component, html, signal } from "https://unpkg.com/esor/dist/esor.min.js";
 
 component("todo-app", () => {
-  const task1 = signal("");
-  const task2 = signal("");
-  const task3 = signal("");
+  const task1 = signal("Buy groceries");
+  const task2 = signal("Walk the dog");
+  const task3 = signal("Read a book");
   const done1 = signal(false);
   const done2 = signal(false);
   const done3 = signal(false);
@@ -225,7 +225,7 @@ component("todo-app", () => {
   return html\`
     <div style="font-family: sans-serif; padding: 20px; max-width: 500px;">
       <h1>Simple Todo List</h1>
-      <p style="color: #666;">Edit the tasks below:</p>
+      <p style="color: #666;">Check off tasks and edit them:</p>
 
       <div style="margin: 20px 0;">
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
@@ -238,7 +238,7 @@ component("todo-app", () => {
             value=\${task1}
             oninput=\${(e) => task1(e.target.value)}
             placeholder="Task 1"
-            style="flex: 1; padding: 8px; text-decoration: \${() => done1() ? 'line-through' : 'none'};"
+            style="flex: 1; padding: 8px;"
           />
         </div>
 
@@ -252,7 +252,7 @@ component("todo-app", () => {
             value=\${task2}
             oninput=\${(e) => task2(e.target.value)}
             placeholder="Task 2"
-            style="flex: 1; padding: 8px; text-decoration: \${() => done2() ? 'line-through' : 'none'};"
+            style="flex: 1; padding: 8px;"
           />
         </div>
 
@@ -266,13 +266,13 @@ component("todo-app", () => {
             value=\${task3}
             oninput=\${(e) => task3(e.target.value)}
             placeholder="Task 3"
-            style="flex: 1; padding: 8px; text-decoration: \${() => done3() ? 'line-through' : 'none'};"
+            style="flex: 1; padding: 8px;"
           />
         </div>
       </div>
 
-      <p style="margin-top: 20px; color: #666;">
-        Completed: \${() => [done1(), done2(), done3()].filter(Boolean).length} / 3
+      <p style="margin-top: 20px; font-size: 18px;">
+        ✓ Task 1: \${done1} | ✓ Task 2: \${done2} | ✓ Task 3: \${done3}
       </p>
     </div>
   \`;
@@ -286,18 +286,22 @@ component("form-app", () => {
   const username = signal("");
   const password = signal("");
   const message = signal("");
+  const isSuccess = signal(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username().length < 3) {
       message("Username must be at least 3 characters");
+      isSuccess(false);
       return;
     }
     if (password().length < 6) {
       message("Password must be at least 6 characters");
+      isSuccess(false);
       return;
     }
     message("✓ Form submitted successfully!");
+    isSuccess(true);
     setTimeout(() => message(""), 3000);
   };
 
@@ -313,6 +317,7 @@ component("form-app", () => {
             style="width: 100%; padding: 8px; font-size: 16px; box-sizing: border-box;"
             placeholder="Enter username"
           />
+          <p style="margin-top: 5px; font-size: 14px;">Current: \${username}</p>
         </div>
         <div>
           <label style="display: block; margin-bottom: 5px;">Password (min 6 chars):</label>
@@ -323,13 +328,14 @@ component("form-app", () => {
             style="width: 100%; padding: 8px; font-size: 16px; box-sizing: border-box;"
             placeholder="Enter password"
           />
+          <p style="margin-top: 5px; font-size: 14px;">Length: \${() => password().length}</p>
         </div>
-        <button type="submit" style="padding: 10px; cursor: pointer; font-size: 16px;">
+        <button type="submit" style="padding: 10px; cursor: pointer; font-size: 16px; background: #4CAF50; color: white; border: none; border-radius: 4px;">
           Submit
         </button>
-        <div style="min-height: 24px; color: \${() => message().includes('✓') ? 'green' : 'red'}; font-weight: bold;">
-          \${message}
-        </div>
+        <p style="min-height: 24px; font-weight: bold; color: #333;">
+          Status: \${message}
+        </p>
       </form>
     </div>
   \`;
@@ -340,18 +346,18 @@ document.body.innerHTML = '<form-app></form-app>';`,
         'fetch-data': `import { component, html, signal } from "https://unpkg.com/esor/dist/esor.min.js";
 
 component("fetch-app", () => {
-  const data = signal("");
+  const quote = signal("Click the button to load a joke");
   const loading = signal(false);
 
-  const fetchQuote = async () => {
+  const fetchJoke = async () => {
     loading(true);
-    data("");
+    quote("Loading...");
     try {
-      const response = await fetch('https://api.quotable.io/random');
+      const response = await fetch('https://official-joke-api.appspot.com/random_joke');
       const json = await response.json();
-      data(\`"\${json.content}" — \${json.author}\`);
+      quote(\`\${json.setup} — \${json.punchline}\`);
     } catch (err) {
-      data("Error loading quote: " + err.message);
+      quote("Error: Could not load joke. Try again!");
     } finally {
       loading(false);
     }
@@ -359,21 +365,25 @@ component("fetch-app", () => {
 
   return html\`
     <div style="font-family: sans-serif; padding: 20px; max-width: 600px;">
-      <h1>Random Quote Generator</h1>
-      <p style="color: #666;">Click the button to fetch a random quote from an API</p>
+      <h1>Random Joke Generator</h1>
+      <p style="color: #666;">Click the button to fetch a random joke from an API</p>
 
       <button
-        onclick=\${fetchQuote}
+        onclick=\${fetchJoke}
         style="padding: 12px 24px; cursor: pointer; font-size: 16px; margin: 20px 0; background: #4CAF50; color: white; border: none; border-radius: 4px;"
       >
-        \${() => loading() ? 'Loading...' : 'Get Random Quote'}
+        Get Random Joke
       </button>
 
       <div style="min-height: 100px; padding: 20px; background: #f5f5f5; border-radius: 4px; margin-top: 20px;">
         <p style="font-size: 18px; line-height: 1.6; margin: 0;">
-          \${() => data() || 'Click the button to load a quote'}
+          \${quote}
         </p>
       </div>
+
+      <p style="margin-top: 20px; color: #999; font-size: 14px;">
+        Status: \${() => loading() ? '⏳ Loading...' : '✓ Ready'}
+      </p>
     </div>
   \`;
 });
