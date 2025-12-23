@@ -226,26 +226,23 @@ component("todo-list", () => {
   };
 
   return html\`
-    <div style="font-family: sans-serif; padding: 20px; max-width: 500px;">
-      <h1>Todo List</h1>
-      <div style="margin-bottom: 20px;">
-        <input
-          value=\${input}
-          oninput=\${(e) => input(e.target.value)}
-          onkeyup=\${(e) => e.key === "Enter" && addTodo()}
-          style="padding: 8px; font-size: 14px; width: 70%;"
-          placeholder="Add a todo..."
-        />
-        <button onclick=\${addTodo} style="padding: 8px 16px; margin-left: 5px; cursor: pointer;">Add</button>
-      </div>
+    <div style="font-family: sans-serif; padding: 20px;">
+      <input
+        value=\${input}
+        oninput=\${(e) => input(e.target.value)}
+        onkeyup=\${(e) => e.key === "Enter" && addTodo()}
+        placeholder="Add a todo..."
+        style="padding: 8px; margin-right: 10px;"
+      />
+      <button onclick=\${addTodo}>Add Todo</button>
 
-      <ul style="list-style: none; padding: 0;">
+      <ul style="list-style: none; padding: 0; margin-top: 20px;">
         \${() =>
           todos().map(
             (todo) => html\`
-              <li key=\${todo.id} style="padding: 10px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between;">
-                <span>\${todo.text}</span>
-                <button onclick=\${() => removeTodo(todo.id)} style="cursor: pointer;">❌</button>
+              <li key=\${todo.id} style="padding: 10px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center;">
+                \${todo.text}
+                <button onclick=\${() => removeTodo(todo.id)}>❌</button>
               </li>
             \`
           )}
