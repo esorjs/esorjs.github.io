@@ -213,20 +213,17 @@ document.body.innerHTML = '<counter-app></counter-app>';`,
 component("todo-list", () => {
   const todos = signal([]);
   const input = signal("");
-  const count = signal(0);
 
   const addTodo = () => {
     const text = input().trim();
     if (text) {
       todos([...todos(), { id: Date.now(), text: text }]);
-      count(count() + 1);
       input("");
     }
   };
 
   const removeTodo = (id) => {
     todos(todos().filter((todo) => todo.id !== id));
-    count(count() - 1);
   };
 
   const renderTodos = () => {
@@ -253,10 +250,10 @@ component("todo-list", () => {
       </div>
 
       <div style="margin-top: 20px;">
-        <p>Total: \${count} items</p>
+        <p>Total: \${() => todos().length} items</p>
       </div>
 
-      <ul style="list-style: none; padding: 0; margin-top: 20px;" innerHTML=\${renderTodos}></ul>
+      <ul style="list-style: none; padding: 0; margin-top: 20px;" innerHTML=\${() => renderTodos()}></ul>
     </div>
   \`;
 
