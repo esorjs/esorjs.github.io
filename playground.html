@@ -213,22 +213,32 @@ document.body.innerHTML = '<counter-app></counter-app>';`,
 component("todo-list", () => {
   const todos = signal([]);
   const input = signal("");
+  const count = signal(0);
 
   const addTodo = () => {
     const text = input().trim();
     if (text) {
-      const newTodos = [...todos(), { id: Date.now(), text: text }];
-      todos(newTodos);
+      todos([...todos(), { id: Date.now(), text: text }]);
+      count(count() + 1);
       input("");
     }
   };
 
   const removeTodo = (id) => {
-    const filtered = todos().filter((todo) => todo.id !== id);
-    todos(filtered);
+    todos(todos().filter((todo) => todo.id !== id));
+    count(count() - 1);
   };
 
-  return html\`
+  const renderTodos = () => {
+    return todos().map((todo) =>
+      \`<li key="\${todo.id}" style="padding: 10px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center; background: #f5f5f5; margin-bottom: 5px;">
+        <span>\${todo.text}</span>
+        <button onclick="document.querySelector('todo-list').removeTodo(\${todo.id})" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px; border-radius: 3px;">Delete</button>
+      </li>\`
+    ).join('');
+  };
+
+  const component = html\`
     <div style="font-family: sans-serif; padding: 20px;">
       <h2>Todo List</h2>
       <div style="margin-bottom: 20px;">
@@ -243,22 +253,15 @@ component("todo-list", () => {
       </div>
 
       <div style="margin-top: 20px;">
-        <p>Total: \${() => todos().length} items</p>
+        <p>Total: \${count} items</p>
       </div>
 
-      <ul style="list-style: none; padding: 0; margin-top: 20px;">
-        \${() =>
-          todos().map(
-            (todo) => html\`
-              <li key=\${todo.id} style="padding: 10px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center; background: #f5f5f5; margin-bottom: 5px;">
-                <span>\${todo.text}</span>
-                <button onclick=\${() => removeTodo(todo.id)} style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px; border-radius: 3px;">Delete</button>
-              </li>
-            \`
-          )}
-      </ul>
+      <ul style="list-style: none; padding: 0; margin-top: 20px;" innerHTML=\${renderTodos}></ul>
     </div>
   \`;
+
+  component.removeTodo = removeTodo;
+  return component;
 });
 
 document.body.innerHTML = '<todo-list></todo-list>';`,
