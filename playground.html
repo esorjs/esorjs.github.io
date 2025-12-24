@@ -212,17 +212,14 @@ document.body.innerHTML = '<counter-app></counter-app>';`,
 
 component("todo-list", () => {
   const todos = signal([]);
+  let inputEl;
 
-  const addTodo = (e) => {
-    const input = e.currentTarget
-      .closest("div")
-      .querySelector("input");
-
-    const text = input.value.trim();
+  const addTodo = () => {
+    const text = inputEl.value.trim();
     if (!text) return;
 
     todos([...todos(), { id: Date.now(), text }]);
-    input.value = "";
+    inputEl.value = "";
   };
 
   const removeTodo = (id) => {
@@ -232,18 +229,25 @@ component("todo-list", () => {
   return html\`
     <div>
       <input
+        ref=\${el => (inputEl = el)}
         placeholder="Nueva tarea"
-        onkeyup=\${e => e.key === "Enter" && addTodo(e)}
+        onkeyup=\${(e) => e.key === "Enter" && addTodo()}
+        style="width:80%; padding:18px; margin:5px; box-sizing:border-box;"
       />
 
-      <button onclick=\${addTodo}>Add</button>
+      <button
+        onclick=\${addTodo}
+        style="padding:18px; margin:5px; box-sizing:border-box;"
+      >
+        Add
+      </button>
 
       <ul>
         \${() =>
           todos().map(todo => html\`
             <li key=\${todo.id}>
               \${todo.text}
-              <button onclick=\${() => removeTodo(todo.id)}>❌</button>
+              <button onclick=\${(id) => removeTodo(todo.id)}>❌</button>
             </li>
           \`)
         }
