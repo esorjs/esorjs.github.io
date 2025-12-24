@@ -215,9 +215,8 @@ component("todo-list", () => {
   const input = signal("");
 
   const addTodo = () => {
-    const text = input().trim();
-    if (text) {
-      todos([...todos(), { id: Date.now(), text: text }]);
+    if (input()) {
+      todos([...todos(), { id: Date.now(), text: input() }]);
       input("");
     }
   };
@@ -226,39 +225,28 @@ component("todo-list", () => {
     todos(todos().filter((todo) => todo.id !== id));
   };
 
-  const renderTodos = () => {
-    return todos().map((todo) =>
-      \`<li key="\${todo.id}" style="padding: 10px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center; background: #f5f5f5; margin-bottom: 5px;">
-        <span>\${todo.text}</span>
-        <button onclick="document.querySelector('todo-list').removeTodo(\${todo.id})" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px; border-radius: 3px;">Delete</button>
-      </li>\`
-    ).join('');
-  };
+  return html\\\`
+    <div>
+      <input
+        value=\\\${input}
+        oninput=\\\${(e) => input(e.target.value)}
+        onkeyup=\\\${(e) => e.key === "Enter" && addTodo()}
+      />
+      <button onclick=\\\${addTodo}>Add Todo</button>
 
-  const component = html\`
-    <div style="font-family: sans-serif; padding: 20px;">
-      <h2>Todo List</h2>
-      <div style="margin-bottom: 20px;">
-        <input
-          value=\${input}
-          oninput=\${(e) => input(e.target.value)}
-          onkeyup=\${(e) => e.key === "Enter" && addTodo()}
-          placeholder="Add a todo..."
-          style="padding: 8px; margin-right: 10px; width: 300px;"
-        />
-        <button onclick=\${addTodo} style="padding: 8px 16px; cursor: pointer;">Add Todo</button>
-      </div>
-
-      <div style="margin-top: 20px;">
-        <p>Total: \${() => todos().length} items</p>
-      </div>
-
-      <ul style="list-style: none; padding: 0; margin-top: 20px;" innerHTML=\${() => renderTodos()}></ul>
+      <ul>
+        \\\${() =>
+          todos().map(
+            (todo) => html\\\`
+              <li key=\\\${todo.id}>
+                \\\${todo.text}
+                <button onclick=\\\${() => removeTodo(todo.id)}>❌</button>
+              </li>
+            \\\`
+          )}
+      </ul>
     </div>
-  \`;
-
-  component.removeTodo = removeTodo;
-  return component;
+  \\\`;
 });
 
 document.body.innerHTML = '<todo-list></todo-list>';`,
