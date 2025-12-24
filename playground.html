@@ -225,28 +225,28 @@ component("todo-list", () => {
     todos(todos().filter((todo) => todo.id !== id));
   };
 
-  return html\\\`
+  return html\`
     <div>
       <input
-        value=\\\${input}
-        oninput=\\\${(e) => input(e.target.value)}
-        onkeyup=\\\${(e) => e.key === "Enter" && addTodo()}
+        value=\${input}
+        oninput=\${(e) => input(e.target.value)}
+        onkeyup=\${(e) => e.key === "Enter" && addTodo()}
       />
-      <button onclick=\\\${addTodo}>Add Todo</button>
+      <button onclick=\${addTodo}>Add Todo</button>
 
       <ul>
-        \\\${() =>
+        \${() =>
           todos().map(
-            (todo) => html\\\`
-              <li key=\\\${todo.id}>
-                \\\${todo.text}
-                <button onclick=\\\${() => removeTodo(todo.id)}>❌</button>
+            (todo) => html\`
+              <li key=\${todo.id}>
+                \${todo.text}
+                <button onclick=\${() => removeTodo(todo.id)}>❌</button>
               </li>
-            \\\`
+            \`
           )}
       </ul>
     </div>
-  \\\`;
+  \`;
 });
 
 document.body.innerHTML = '<todo-list></todo-list>';`,
