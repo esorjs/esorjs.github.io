@@ -212,44 +212,47 @@ document.body.innerHTML = '<counter-app></counter-app>';`,
 
 component("todo-list", () => {
   const todos = signal([]);
-  const input = signal("");
 
-  const addTodo = () => {
-    if (input()) {
-      todos([...todos(), { id: Date.now(), text: input() }]);
-      input("");
-    }
+  const addTodo = (e) => {
+    const input = e.currentTarget
+      .closest("div")
+      .querySelector("input");
+
+    const text = input.value.trim();
+    if (!text) return;
+
+    todos([...todos(), { id: Date.now(), text }]);
+    input.value = "";
   };
 
   const removeTodo = (id) => {
-    todos(todos().filter((todo) => todo.id !== id));
+    todos(todos().filter(t => t.id !== id));
   };
 
   return html\`
     <div>
       <input
-        value=\${input}
-        oninput=\${(e) => input(e.target.value)}
-        onkeyup=\${(e) => e.key === "Enter" && addTodo()}
+        placeholder="Nueva tarea"
+        onkeyup=\${e => e.key === "Enter" && addTodo(e)}
       />
-      <button onclick=\${addTodo}>Add Todo</button>
+
+      <button onclick=\${addTodo}>Add</button>
 
       <ul>
         \${() =>
-          todos().map(
-            (todo) => html\`
-              <li key=\${todo.id}>
-                \${todo.text}
-                <button onclick=\${() => removeTodo(todo.id)}>❌</button>
-              </li>
-            \`
-          )}
+          todos().map(todo => html\`
+            <li key=\${todo.id}>
+              \${todo.text}
+              <button onclick=\${() => removeTodo(todo.id)}>❌</button>
+            </li>
+          \`)
+        }
       </ul>
     </div>
   \`;
 });
 
-document.body.innerHTML = '<todo-list></todo-list>';`,
+document.body.innerHTML = \`<todo-list></todo-list>\`;`,
 
         'form-validation': `import { component, html, signal } from "https://unpkg.com/esor/dist/esor.min.js";
 
